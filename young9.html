@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gina Tricot – Young 9–14</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Toppbanner -->
+  <div class="top-banner">❄️ Winter Sale – Forlengede leveringstider ❄️</div>
+
+  <!-- Navigasjon -->
+  <header>
+                <a href="index.html"> <div class="logo">gina tricot</div> </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Nyheter</a></li>
+        <li><a href="young9.html" class="active">Young 9–14</a></li>
+        <li><a href="young14.html">Young 14+</a></li>
+      </ul>
+    </nav>
+    <div class="icons">
+      <input type="text" placeholder="Søk produkter..." />
+      <span>♡</span>
+      <span>🛒</span>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="section section1" style="background-image: url('img/snø.gif');">
+    <div class="content">
+      <h1>Young 9–14 Collection</h1>
+      <button class="btn" onclick="document.getElementById('young-products').scrollIntoView({behavior: 'smooth'});">Shop Now</button>
+    </div>
+  </div>
+
+  <!-- Produktkarusell -->
+  <div class="section section2" id="young-products">
+    <section class="carousel-section">
+    <h2 class="collection-heading">TOP JACKETS</h2>
+      <div class="carousel-container">
+        <div class="arrow left">&#10094;</div>
+        <div class="carousel-track">
+          <div class="carousel-item">
+            <img src="img/barn.jpg" alt="Vinterjakke barn">
+            <div class="product-info">
+              <h3>Vinterjakke</h3>
+              <p>Størrelse: 134–164</p>
+              <span class="price">599 kr</span>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="img/barn2.jpg" alt="Genser barn">
+            <div class="product-info">
+              <h3>Kosegenser</h3>
+              <p>Størrelse: 134–164</p>
+              <span class="price">249 kr</span>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="img/barn3.jpg" alt="Kjole barn">
+            <div class="product-info">
+              <h3>Party-kjole</h3>
+              <p>Størrelse: 134–164</p>
+              <span class="price">399 kr</span>
+            </div>
+          </div>
+        </div>
+        <div class="arrow right">&#10095;</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Bildegrid -->
+  <div class="section section4">
+    <h2 class="collection-heading">Scarf Collection</h2>
+    <div class="image-grid">
+      <img src="img/skjerf.jpg" alt="Look 1">
+      <img src="img/skjer2.jpg" alt="Look 2">
+      <img src="img/skjerf3.jpg" alt="Look 3">
+      <img src="img/skjerf4.jpg" alt="Look 4">
+    </div>
+  </div>
+
+  <!-- Karusell JS (samme som index) -->
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const items = Array.from(track.children);
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      const itemWidth = items[0].offsetWidth + 30;
+      const container = document.querySelector('.carousel-container');
+      const containerWidth = container.offsetWidth;
+      const center = (containerWidth - itemWidth) / 2;
+      const translateX = -currentIndex * itemWidth + center;
+      track.style.transform = `translateX(${translateX}px)`;
+      items.forEach((item, i) => {
+        item.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    leftArrow.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+    });
+
+    rightArrow.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel();
+  </script>
+
+</body>
+</html>

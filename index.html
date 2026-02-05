@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gina Tricot – Winter 2025</title>
+  <link rel="stylesheet" href="style.css" /> <!-- Kobler til CSS -->
+</head>
+
+<body>
+
+  <!-- Toppbanner (lite felt øverst med info) -->
+  <div class="top-banner">❄️ Winter Sale – Forlengede leveringstider ❄️</div>
+
+  <!-- Navigasjon og logo -->
+  <header>
+    <div class="logo">gina tricot</div> <!-- Logo -->
+    <nav>
+      <ul>
+        <li><a href="#">Nyheter</a></li>
+        <li><a href="young9.html">Young 9–14</a></li>
+        <li><a href="young14.html">Young 14+</a></li>
+      </ul>
+    </nav>
+    <!-- Ikoner + søkefelt -->
+    <div class="icons">
+      <input type="text" placeholder="Søk produkter..." />
+      <span>♡</span> <!-- Hjerte -->
+      <span>🛒</span> <!-- Handlevogn -->
+    </div>
+  </header>
+
+  <!-- Seksjon 1: Forsidebilde (Hero) -->
+  <div class="section section1">
+    <div class="content">
+      <h1>Winter Collection 2025</h1>
+      <a href="#collection" class="btn">Shop Now</a>
+    </div>
+  </div>
+
+  <!-- Seksjon 2: Karusell (scrollbare produkter) -->
+  <div class="section section2">
+    <section class="carousel-section">
+      <h2>Vinterkolleksjonen</h2>
+      <div class="carousel-container">
+        <!-- Piler til venstre og høyre -->
+        <div class="arrow left">&#10094;</div>
+        <div class="carousel-track">
+
+          <!-- Hver "carousel-item" er et produkt -->
+          <div class="carousel-item">
+            <a href="knitted.html">
+              <img src="img/coat.jpg" alt="Classic Winter Coat">
+            </a>
+            <div class="product-info">
+              <h3>Classic Winter Coat</h3>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <a href="winter.html">
+              <img src="img/Knitted wrap cardigan .jpg" alt="Knitted Wrap Cardigan">
+            </a>
+            <div class="product-info">
+              <h3>Knitted Wrap Cardigan</h3>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <a href="knittedgrå.html">
+              <img src="img/model2.jpg" alt="Winter Sweater">
+            </a>
+            <div class="product-info">
+              <h3>Winter Sweater</h3>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <a href="model13.html">
+              <img src="img/sweater.jpg" alt="Model Sweater">
+            </a>
+            <div class="product-info">
+              <h3>Model Sweater</h3>
+            </div>
+          </div>
+
+        </div>
+        <div class="arrow right">&#10095;</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Seksjon 3: Nyhetsbrev -->
+  <div class="section section3">
+    <div class="newsletter-grid">
+      <!-- Venstre side: tekst og skjema -->
+      <div class="newsletter-card">
+        <h2>Bli medlem</h2>
+        <p>Meld deg på nyhetsbrevet og få eksklusive tilbud, stylingtips og 10 % velkomstkode.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" id="newsletterEmail" placeholder="Din e-postadresse" required>
+          <button type="submit">Meld meg på</button>
+        </form>
+        <p class="disclaimer">Du kan når som helst melde deg av.</p>
+      </div>
+      <!-- Høyre side: bilde -->
+      <div class="newsletter-image">
+        <img src="img/meld.jpg" alt="Bli medlem hos oss">
+      </div>
+    </div>
+  </div>
+
+  <!-- Seksjon 4: Fire bilder (collection grid) -->
+  <div class="section section4" id="collection">
+    <h2 class="collection-heading">New Collection</h2>
+    <div class="image-grid">
+      <img src="img/SLIDE.jpg" alt="Look 1">
+      <img src="img/slide2.jpg" alt="Look 2">
+      <img src="img/slide3.jpg" alt="Look 3">
+      <img src="img/slide4.jpg" alt="Look 4">
+    </div>
+  </div>
+
+  <!-- === JavaScript === -->
+
+  <!-- Script til karusell (piler + bevegelse) -->
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const items = Array.from(track.children);
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+
+    let currentIndex = 0;
+
+    function updateCarousel() {
+      // Regner ut hvor mye karusellen skal flyttes
+      const itemWidth = items[0].offsetWidth + 30;
+      const container = document.querySelector('.carousel-container');
+      const containerWidth = container.offsetWidth;
+      const center = (containerWidth - itemWidth) / 2;
+      const translateX = -currentIndex * itemWidth + center;
+      track.style.transform = `translateX(${translateX}px)`;
+
+      // Markerer aktivt element
+      items.forEach((item, i) => {
+        item.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    // Klikk på piler
+    leftArrow.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+    });
+
+    rightArrow.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    });
+
+    // Oppdater hvis skjermstørrelse endres
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel();
+  </script>
+
+  <!-- Script til nyhetsbrev -->
+  <script>
+    document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+      e.preventDefault(); // hindrer siden i å laste på nytt
+      const email = document.getElementById('newsletterEmail').value;
+      alert('Takk! ' + email + ' du er påmeldt nyhetsbrevet ');
+      this.reset(); // tømmer input-feltet
+    });
+  </script>
+
+</body>
+</html>

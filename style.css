@@ -1,0 +1,344 @@
+/* === GENERELT === */
+html, body {
+  background: #f7f7f7;   /* lys grå bakgrunn */
+  color: #111;           /* mørk tekst */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  overflow-x: hidden;    /* fjern horisontal scroll */
+}
+
+/* === TOPPBANNER === */
+.top-banner {
+  background: #e5eef5;   /* lys blå bakgrunn */
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  font-weight: 500;
+}
+
+/* === HEADER / NAVIGASJON === */
+header {
+  display: flex;                       /* plasser elementer side om side */
+  justify-content: space-between;      /* logo til venstre, ikoner til høyre */
+  align-items: center;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ddd;       /* tynn grå linje under header */
+  background: white;
+  position: sticky;                    /* gjør at header følger når du scroller */
+  top: 0;
+  z-index: 1000;                       /* legg foran annet innhold */
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;                 /* litt mellomrom mellom bokstaver */
+}
+
+nav ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;                    /* fjern prikker foran meny */
+}
+
+nav a {
+  text-decoration: none;               /* fjern understrek */
+  color: #111;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+nav a:hover {
+  color: #49708a;                      /* farge når du holder mus over */
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.icons input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  font-size: 14px;
+}
+
+/* === HERO (forsidebilde) === */
+.section1 {
+  background: url("img/winter.jpg") center/cover no-repeat;
+  height: 100vh;                       /* hele skjermen høyde */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.section1 h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.section1 .btn {
+  padding: 12px 32px;
+  font-size: 1.2rem;
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+}
+.section1 .btn:hover {
+  background: white;
+  color: black;
+}
+
+/* === KARUSELL === */
+.carousel-section {
+  background: #f7f7f7;
+  padding: 60px 0;
+  text-align: center;
+}
+.carousel-section h2 {
+  margin-bottom: 30px;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1a2233;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: "Arial Black", Arial, sans-serif;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+  overflow: visible;                    /* gjør at "active" item kan bli større */
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;      /* myk overgang når du klikker pil */
+}
+.carousel-item {
+  min-width: 260px;
+  margin: 0 15px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  opacity: 0.6;
+  transform: scale(0.9);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carousel-item.active {
+  opacity: 1;
+  transform: scale(1.1);                /* gjør aktivt bilde større */
+  border: 2px solid #fff;
+}
+.carousel-item img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.5rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  user-select: none;
+}
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
+
+/* === NYHETSBREV === */
+.section3 {
+  padding: 60px 6%;
+  background: #fff;
+}
+.newsletter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  align-items: center;
+  max-width: 1180px;
+  margin: auto;
+}
+.newsletter-card {
+  background: #fff;
+  padding: 34px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+.newsletter-card h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.newsletter-card p {
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+.newsletter-form input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.newsletter-form button {
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.newsletter-form button:hover {
+  background: #333;
+}
+.disclaimer {
+  font-size: 13px;
+  color: #888;
+  margin-top: 8px;
+}
+.newsletter-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+/* === COLLECTION GRID === */
+.section4 {
+  background: #fff;
+  padding: 60px 6%;
+  text-align: center;
+}
+.collection-heading {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+.image-grid img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.image-grid img:hover {
+  transform: scale(1.03);
+}
+@media (max-width: 992px) {
+  .image-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 600px) {
+  .image-grid { grid-template-columns: 1fr; }
+}
+
+/* === PRODUKTSIDE (f.eks. knitted.html) === */
+.product-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 60px 10%;
+  background: #fff;
+}
+.product-image img {
+  max-width: 480px;
+  border-radius: 8px;
+}
+.product-details {
+  max-width: 400px;
+}
+.product-details h1 {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.product-details .price {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.chosen-size {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.sizes {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.sizes button {
+  border: 1px solid #111;
+  background: #fff;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+.sizes button:hover {
+  background: #111;
+  color: #fff;
+}
+.buy-btn {
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  transition: background 0.3s;
+}
+.buy-btn:hover {
+  background: #333;
+}
+.delivery, .stock {
+  font-size: 13px;
+  margin-bottom: 10px;
+  color: #555;
+}
+.description {
+  margin-top: 20px;
+}
+.description h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+a .logo {
+  display: inline-block; /* gjør at div-en oppfører seg bedre inni a */
+}
